@@ -448,6 +448,36 @@ body {
     margin-top: 0.5rem;
 }
 
+/* Pageclip Integration Styles */
+.pageclip-form.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.pageclip-form__submit.cta-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 1.125rem 2rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+    letter-spacing: 0.02em;
+}
+
+.pageclip-form__submit.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #7c8ef0 0%, #8a5ab8 100%);
+}
+
 /* Responsive Design */
 @media (min-width: 640px) {
     .form-container {
@@ -461,6 +491,21 @@ body {
     }
     
     .cta-button {
+        width: auto;
+        flex-shrink: 0;
+    }
+    
+    .pageclip-form.form-container {
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .pageclip-form .input-field {
+        flex: 1;
+    }
+    
+    .pageclip-form__submit.cta-button {
         width: auto;
         flex-shrink: 0;
     }
