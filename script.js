@@ -96,3 +96,52 @@ function animate() {
 
 init();
 animate();
+
+// Pageclip form handling
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to show thank you message
+    function showThankYouMessage(form) {
+        const waitlistCard = form.closest('.waitlist-card');
+        
+        // Hide the original form
+        form.style.display = 'none';
+        
+        // Create thank you message
+        const thankYouHTML = `
+            <div class="thank-you-message show">
+                <h3>🎉 Thank you for joining!</h3>
+                <p>You've been successfully added to our waitlist. We'll keep you updated on Synapse's progress and notify you as soon as we're ready to launch!</p>
+            </div>
+        `;
+        
+        // Insert thank you message after the form
+        form.insertAdjacentHTML('afterend', thankYouHTML);
+        
+        // Reset form after 5 seconds and hide thank you message
+        setTimeout(() => {
+            const thankYouMessage = waitlistCard.querySelector('.thank-you-message');
+            if (thankYouMessage) {
+                thankYouMessage.remove();
+            }
+            form.style.display = 'flex';
+            form.reset();
+        }, 5000);
+    }
+    
+    // Handle Pageclip success events
+    window.addEventListener('pageclip-success', function(event) {
+        const form = event.target;
+        if (form.classList.contains('pageclip-form')) {
+            showThankYouMessage(form);
+        }
+    });
+    
+    // Fallback for manual form submission
+    const forms = document.querySelectorAll('.pageclip-form');
+    forms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            // Let Pageclip handle the submission
+            // The success event will be triggered automatically
+        });
+    });
+});
