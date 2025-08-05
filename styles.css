@@ -1,14 +1,31 @@
+/* CSS Custom Properties for better maintainability */
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-hover-bg: rgba(255, 255, 255, 0.06);
+    --glass-hover-border: rgba(255, 255, 255, 0.2);
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --text-muted: rgba(255, 255, 255, 0.4);
+    --shadow-primary: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.4);
+    --border-radius-lg: 1.5rem;
+    --border-radius-md: 1rem;
+    --transition-smooth: all 0.3s ease;
+}
+
 body {
     font-family: 'Space Grotesk', sans-serif;
     background: #171D37;
     background-image: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-    color: #FFFFFF;
+    color: var(--text-primary);
     line-height: 1.6;
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Prevent horizontal scroll */
-    -webkit-text-size-adjust: 100%; /* Prevent text scaling in iOS */
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -36,19 +53,16 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 3rem auto;
+    padding: 3rem 0;
 }
 
-.hero-container {
+.hero-content {
     display: flex;
     flex-direction: column;
     text-align: center;
     justify-content: center;
     align-items: center;
-    max-width: 60rem;
-    margin: 0;
     width: 100%;
-    padding: 0 1rem; /* Add consistent padding */
 }
 
 .hero-logo {
@@ -84,27 +98,29 @@ body {
     font-size: 3.75rem;
     font-weight: 700;
     line-height: 1.2;
-    margin: 0 0 0 0;
+    margin: 0;
     padding: 0;
-    width: 100%; /* Full width */
-    max-width: 100%; /* Remove width restriction */
+    width: 100%;
+    max-width: 100%;
 }
 
 .hero-subtitle {
     font-size: 1.25rem;
-    max-width: 100%; /* Use full container width */
-    margin: 1rem 0 0 0; /* Remove auto margins */
+    max-width: 100%;
+    margin: 1rem 0 0 0;
     padding: 0;
-    width: 100%; /* Full width */
+    width: 100%;
 }
 
 .section-spacing {
-    margin: 0
+    margin: 0;
 }
 
 .section-container {
     max-width: 60rem;
     margin: 0 auto;
+    padding: 0 1rem;
+    text-align: center;
 }
 
 .cta-section {
@@ -112,24 +128,17 @@ body {
     background: linear-gradient(to bottom, transparent, rgba(15, 15, 35, 0.3));
 }
 
-.cta-container {
-    max-width: 60rem;
-    margin: 0 auto;
-    text-align: center;
-    padding: 0 1rem;
-}
-
 /* Typography */
 .gradient-text {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--primary-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    white-space: nowrap; /* Prevent text wrapping */
+    display: inline-block;
 }
 
 .text-white {
-    color: #FFFFFF;
+    color: var(--text-primary);
 }
 
 .section-header {
@@ -138,7 +147,7 @@ body {
     margin-bottom: 1.5rem;
     font-size: 2.5rem;
     text-align: center;
-    color: #FFFFFF;
+    color: var(--text-primary);
 }
 
 .subsection-header {
@@ -161,7 +170,7 @@ body {
 .body-text {
     font-weight: 400;
     line-height: 1.7;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-secondary);
 }
 
 .body-text-lg {
@@ -170,10 +179,6 @@ body {
 
 .body-text-xl {
     font-size: 1.25rem;
-}
-
-.body-text footer {
-    margin: 0;
 }
 
 .text-center {
@@ -325,42 +330,42 @@ body {
 
 /* Cards and Sections */
 .tech-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
     backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    transition: var(--transition-smooth);
     padding: 1.375rem;
-    border-radius: 1rem;
+    border-radius: var(--border-radius-md);
 }
 
 .tech-card:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: var(--glass-hover-bg);
+    border-color: var(--glass-hover-border);
     transform: translateY(-2px);
 }
 
 .tech-card h5 {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #FFFFFF;
+    color: var(--text-primary);
     margin: 0;
     margin-bottom: 0.625rem;
 }
 
 .problem-section {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
     padding: 1.375rem;
-    border-radius: 1rem;
+    border-radius: var(--border-radius-md);
     margin-bottom: 1.375rem;
     backdrop-filter: blur(5px);
 }
 
 .solution-section {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
     padding: 1.375rem;
-    border-radius: 1rem;
+    border-radius: var(--border-radius-md);
     margin-bottom: 1.375rem;
     backdrop-filter: blur(5px);
 }
@@ -406,18 +411,18 @@ body {
 /* Form Elements */
 .input-field {
     background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #FFFFFF;
-    transition: all 0.3s ease;
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    transition: var(--transition-smooth);
     font-weight: 400;
     width: 100%;
     min-width: 280px;
     padding: 1.125rem 1.5rem;
-    border-radius: 1rem;
+    border-radius: var(--border-radius-md);
     font-size: 1rem;
     box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
-    -webkit-appearance: none; /* Remove iOS styling */
-    -moz-appearance: none; /* Remove Firefox styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
     box-sizing: border-box;
 }
@@ -431,26 +436,26 @@ body {
 }
 
 .input-field::placeholder {
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--text-muted);
 }
 
 .cta-button {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--primary-gradient);
     color: white;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: var(--transition-smooth);
     border: none;
     padding: 1.125rem 2rem;
-    border-radius: 1rem;
+    border-radius: var(--border-radius-md);
     font-size: 1rem;
     cursor: pointer;
     box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
     letter-spacing: 0.02em;
-    -webkit-appearance: none; /* Remove iOS styling */
-    -moz-appearance: none; /* Remove Firefox styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
     box-sizing: border-box;
-    min-height: 48px; /* Minimum touch target */
+    min-height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -620,8 +625,54 @@ body {
 
 /* Responsive Design */
 
+/* Very Small Screens - 320px and below */
+@media (max-width: 320px) {
+    .hero-title {
+        font-size: 2.75rem;
+        line-height: 1.1;
+    }
+    
+    .logo-image {
+        height: 3rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.125rem;
+    }
+    
+    .section-header {
+        font-size: 2.25rem;
+    }
+    
+    .section-container {
+        padding: 0 0.75rem;
+    }
+    
+    .waitlist-card {
+        padding: 0 1rem 1.5rem;
+        margin: 0 0.5rem;
+    }
+    
+    .input-field {
+        min-width: 180px;
+        font-size: 1rem;
+        padding: 1rem 1.25rem;
+    }
+    
+    .cta-button {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
 /* Mobile First - Base styles for mobile devices */
 @media (max-width: 479px) {
+    .hero-section {
+        padding: 2rem 0;
+        min-height: 100vh;
+        height: auto;
+    }
+    
     .hero-title {
         font-size: 3.5rem;
         line-height: 1.1;
@@ -633,13 +684,12 @@ body {
     
     .hero-subtitle {
         font-size: 1.375rem;
-        padding: 0; /* Remove padding since container has it */
+        margin: 1rem 0 0 0;
     }
     
     .section-header {
         font-size: 2.75rem;
         line-height: 1.2;
-        padding: 0; /* Remove padding since container handles it */
     }
     
     .subsection-header {
@@ -676,17 +726,6 @@ body {
         margin: 0 0.75rem 1.25rem;
     }
     
-    .hero-container {
-        /* Padding already handled by base styles */
-    }
-    
-    .cta-container {
-        padding: 0 1rem;
-    }
-    
-    .section-container {
-        padding: 0 1rem;
-    }
     
     /* Body text sizes for mobile */
     .body-text {
@@ -1043,12 +1082,6 @@ body {
         gap: 0.875rem;
     }
     
-    .content-max-width,
-    .content-medium-width,
-    .content-small-width {
-        padding: 0 1rem;
-    }
-    
     .hero-section {
         padding: 1.5rem 0;
         min-height: 100vh;
@@ -1131,7 +1164,7 @@ body {
 }
 
 /* Landscape orientation on mobile */
-@media (max-width: 767px) and (orientation: landscape) {
+@media (max-width: 767px) and (orientation: landscape) and (max-height: 500px) {
     .hero-section {
         height: auto;
         min-height: 100vh;
@@ -1139,7 +1172,8 @@ body {
     }
     
     .hero-title {
-        font-size: 2.25rem;
+        font-size: 2.5rem;
+        line-height: 1.1;
     }
     
     .logo-image {
@@ -1151,7 +1185,8 @@ body {
     }
     
     .hero-subtitle {
-        margin: 0.5rem auto 0;
+        margin: 0.5rem 0 0 0;
+        font-size: 1.125rem;
     }
     
     .hero-waitlist-spacing {
