@@ -103,29 +103,58 @@ document.addEventListener('DOMContentLoaded', function() {
     function showThankYouMessage(form) {
         const waitlistCard = form.closest('.waitlist-card');
         
-        // Hide the original form
-        form.style.display = 'none';
-        
-        // Create thank you message
+        // Create thank you message with animation
         const thankYouHTML = `
-            <div class="thank-you-message show">
-                <h3>🎉 Thank you for joining!</h3>
-                <p>You've been successfully added to our waitlist. We'll keep you updated on Synapse's progress and notify you as soon as we're ready to launch!</p>
+            <div class="thank-you-message">
+                <div class="checkmark"></div>
+                <h3>Welcome aboard!</h3>
+                <p>You're now on the Synapse waitlist. We'll notify you when we're ready to launch!</p>
             </div>
         `;
         
-        // Insert thank you message after the form
-        form.insertAdjacentHTML('afterend', thankYouHTML);
+        // Hide form with smooth animation
+        form.style.opacity = '0';
+        form.style.transform = 'translateY(-10px) scale(0.98)';
+        form.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
         
-        // Reset form after 5 seconds and hide thank you message
+        setTimeout(() => {
+            form.style.display = 'none';
+            
+            // Insert thank you message
+            form.insertAdjacentHTML('afterend', thankYouHTML);
+            
+            // Trigger animation for thank you message
+            const thankYouMessage = waitlistCard.querySelector('.thank-you-message');
+            setTimeout(() => {
+                thankYouMessage.classList.add('show');
+            }, 50);
+            
+        }, 400);
+        
+        // Reset form after 6 seconds
         setTimeout(() => {
             const thankYouMessage = waitlistCard.querySelector('.thank-you-message');
             if (thankYouMessage) {
-                thankYouMessage.remove();
+                // Hide thank you message with animation
+                thankYouMessage.style.opacity = '0';
+                thankYouMessage.style.transform = 'translateY(10px) scale(0.95)';
+                thankYouMessage.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+                
+                setTimeout(() => {
+                    thankYouMessage.remove();
+                    
+                    // Show form again
+                    form.style.display = 'flex';
+                    form.reset();
+                    
+                    // Animate form back in
+                    setTimeout(() => {
+                        form.style.opacity = '1';
+                        form.style.transform = 'translateY(0) scale(1)';
+                    }, 50);
+                }, 400);
             }
-            form.style.display = 'flex';
-            form.reset();
-        }, 5000);
+        }, 6000);
     }
     
     // Handle Pageclip success events
