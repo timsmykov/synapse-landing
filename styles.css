@@ -88,11 +88,6 @@ body {
     padding: 0;
 }
 
-.hero-waitlist {
-    max-width: 32rem;
-    margin: 1rem auto 0;
-}
-
 .section-spacing {
     margin: 0
 }
@@ -266,6 +261,10 @@ body {
 .content-small-width {
     max-width: 32rem;
     margin: 0 auto;
+}
+
+.hero-waitlist-spacing {
+    margin-top: 1rem;
 }
 
 .mx-auto {
