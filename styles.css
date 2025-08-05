@@ -1073,6 +1073,19 @@ body {
         display: block;
     }
     
+    /* Increase paragraph text size for desktop */
+    .body-text {
+        font-size: 1.25rem;
+    }
+    
+    .body-text-lg {
+        font-size: 1.375rem;
+    }
+    
+    .body-text-xl {
+        font-size: 1.5rem;
+    }
+    
     .section-header {
         font-size: 3.75rem;
     }
