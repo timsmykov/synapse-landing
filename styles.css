@@ -112,6 +112,10 @@ body {
     width: 100%;
 }
 
+.hero-subtitle .desktop-break {
+    display: inline;
+}
+
 .section-spacing {
     margin: 0;
 }
@@ -628,12 +632,16 @@ body {
 /* Very Small Screens - 320px and below */
 @media (max-width: 320px) {
     .hero-title {
-        font-size: 2.75rem;
+        font-size: 2.5rem;
         line-height: 1.1;
     }
     
+    .hero-title .gradient-text {
+        font-size: 0.75em;
+    }
+    
     .logo-image {
-        height: 3rem;
+        height: 4rem;
     }
     
     .hero-subtitle {
@@ -674,12 +682,16 @@ body {
     }
     
     .hero-title {
-        font-size: 3.5rem;
+        font-size: 3rem;
         line-height: 1.1;
     }
     
+    .hero-title .gradient-text {
+        font-size: 0.8em;
+    }
+    
     .logo-image {
-        height: 3.5rem;
+        height: 4.5rem;
     }
     
     .hero-subtitle {
@@ -775,11 +787,15 @@ body {
 /* Small Mobile - 480px and up */
 @media (min-width: 480px) and (max-width: 639px) {
     .hero-title {
-        font-size: 4rem;
+        font-size: 3.5rem;
+    }
+    
+    .hero-title .gradient-text {
+        font-size: 0.9em;
     }
     
     .logo-image {
-        height: 4rem;
+        height: 5rem;
     }
     
     .section-header {
@@ -890,7 +906,7 @@ body {
     }
     
     .hero-title {
-        font-size: 4.5rem;
+        font-size: 4rem;
     }
     
     .hero-subtitle {
@@ -1052,6 +1068,11 @@ body {
         font-size: 1.5rem;
     }
     
+    /* Break "Stop explaining. Start creating." to new line on desktop */
+    .hero-subtitle .desktop-break {
+        display: block;
+    }
+    
     .section-header {
         font-size: 3.75rem;
     }
@@ -1085,6 +1106,12 @@ body {
     .hero-section {
         padding: 1.5rem 0;
         min-height: 100vh;
+    }
+    
+    /* Ensure "Be Understood" stays on one line on mobile */
+    .hero-title .gradient-text {
+        white-space: nowrap;
+        font-size: 0.85em;
     }
     
     .section-spacing {
