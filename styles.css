@@ -88,6 +88,7 @@ body {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -231,15 +232,15 @@ body {
     margin-bottom: 1.5rem;
 }
 
-.text-spacing > * + * {
+.text-spacing>*+* {
     margin-top: 1rem;
 }
 
-.space-y-4 > * + * {
+.space-y-4>*+* {
     margin-top: 0.75rem;
 }
 
-.space-y-6 > * + * {
+.space-y-6>*+* {
     margin-top: 1rem;
 }
 
@@ -511,29 +512,36 @@ body {
     background: linear-gradient(135deg, #7c8ef0 0%, #8a5ab8 100%);
 }
 
-/* Thank you message styles */
+/* Thank you message styles - Enhanced design */
 .thank-you-message {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
-    border: 1px solid rgba(102, 126, 234, 0.4);
-    backdrop-filter: blur(30px);
-    padding: 3rem 2rem;
-    border-radius: 2rem;
+    background: linear-gradient(135deg,
+            rgba(102, 126, 234, 0.25) 0%,
+            rgba(118, 75, 162, 0.20) 50%,
+            rgba(102, 126, 234, 0.15) 100%);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    backdrop-filter: blur(40px) saturate(180%);
+    padding: 4rem 3rem;
+    border-radius: 2.5rem;
     text-align: center;
     color: #FFFFFF;
-    box-shadow: 
-        0 20px 60px rgba(102, 126, 234, 0.3),
-        0 8px 32px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    box-shadow:
+        0 32px 80px rgba(102, 126, 234, 0.4),
+        0 16px 48px rgba(0, 0, 0, 0.5),
+        inset 0 2px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -2px 0 rgba(102, 126, 234, 0.2);
     opacity: 0;
-    transform: translateY(20px) scale(0.95);
-    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: translateY(30px) scale(0.9);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
-    min-height: 160px;
+    min-height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .thank-you-message::before {
@@ -542,35 +550,43 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(102, 126, 234, 0.8), 
-        rgba(118, 75, 162, 0.8), 
-        transparent
-    );
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(102, 126, 234, 0.9) 20%,
+            rgba(118, 75, 162, 0.9) 50%,
+            rgba(102, 126, 234, 0.9) 80%,
+            transparent 100%);
+    border-radius: 2.5rem 2.5rem 0 0;
 }
 
 .thank-you-message::after {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, 
-        transparent 30%, 
-        rgba(102, 126, 234, 0.05) 50%, 
-        transparent 70%
-    );
-    animation: shimmer 3s ease-in-out infinite;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background: conic-gradient(from 0deg at 50% 50%,
+            transparent 0deg,
+            rgba(102, 126, 234, 0.08) 60deg,
+            rgba(118, 75, 162, 0.08) 120deg,
+            transparent 180deg,
+            rgba(102, 126, 234, 0.08) 240deg,
+            rgba(118, 75, 162, 0.08) 300deg,
+            transparent 360deg);
+    animation: rotate 8s linear infinite;
     pointer-events: none;
 }
 
-@keyframes shimmer {
-    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-    50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-    100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .thank-you-message.show {
@@ -578,51 +594,105 @@ body {
     transform: translateY(0) scale(1);
 }
 
-.thank-you-message .checkmark {
-    width: 60px;
-    height: 60px;
+.thank-you-message .success-icon {
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     position: relative;
-    animation: checkmarkPulse 2s ease-in-out infinite;
+    box-shadow:
+        0 8px 32px rgba(102, 126, 234, 0.4),
+        inset 0 2px 0 rgba(255, 255, 255, 0.3);
+    animation: successPulse 3s ease-in-out infinite;
 }
 
-.thank-you-message .checkmark::before {
+.thank-you-message .success-icon::before {
     content: '✓';
     color: white;
-    font-size: 2rem;
-    font-weight: bold;
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-@keyframes checkmarkPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+.thank-you-message .success-icon::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(102, 126, 234, 0.3);
+    animation: ripple 2s ease-out infinite;
 }
 
-.thank-you-message h3 {
-    font-size: 2rem;
-    font-weight: 700;
+@keyframes successPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow:
+            0 8px 32px rgba(102, 126, 234, 0.4),
+            inset 0 2px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow:
+            0 12px 40px rgba(102, 126, 234, 0.6),
+            inset 0 2px 0 rgba(255, 255, 255, 0.4);
+    }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+.thank-you-message .title {
+    font-size: 2.25rem;
+    font-weight: 800;
     color: #FFFFFF;
     margin-bottom: 1rem;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     position: relative;
     z-index: 1;
+    text-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
 }
 
-.thank-you-message p {
-    font-size: 1.125rem;
-    color: rgba(255, 255, 255, 0.9);
+.thank-you-message .subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.95);
     margin: 0;
     line-height: 1.6;
-    max-width: 300px;
+    max-width: 400px;
+    position: relative;
+    z-index: 1;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+
+.thank-you-message .accent-line {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 2px;
+    margin: 1.5rem auto 0;
     position: relative;
     z-index: 1;
 }
@@ -635,38 +705,38 @@ body {
         font-size: 2.5rem;
         line-height: 1.1;
     }
-    
+
     .hero-title .gradient-text {
         font-size: 0.75em;
     }
-    
+
     .logo-image {
         height: 4rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1.125rem;
     }
-    
+
     .section-header {
         font-size: 2.25rem;
     }
-    
+
     .section-container {
         padding: 0 0.75rem;
     }
-    
+
     .waitlist-card {
         padding: 0 1rem 1.5rem;
         margin: 0 0.5rem;
     }
-    
+
     .input-field {
         min-width: 180px;
         font-size: 1rem;
         padding: 1rem 1.25rem;
     }
-    
+
     .cta-button {
         padding: 1rem 1.5rem;
         font-size: 1rem;
@@ -680,106 +750,108 @@ body {
         min-height: 100vh;
         height: auto;
     }
-    
+
     .hero-title {
         font-size: 3rem;
         line-height: 1.1;
     }
-    
+
     .hero-title .gradient-text {
         font-size: 0.8em;
     }
-    
+
     .logo-image {
         height: 4.5rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1.375rem;
         margin: 1rem 0 0 0;
     }
-    
+
     .section-header {
         font-size: 2.75rem;
         line-height: 1.2;
     }
-    
+
     .subsection-header {
         font-size: 1.75rem;
     }
-    
+
     .subsection-header-center {
         font-size: 1.5rem;
     }
-    
+
     .waitlist-card {
         padding: 0 1.25rem 1.75rem;
         margin: 0 0.75rem;
     }
-    
+
     .input-field {
         min-width: 200px;
         font-size: 1.125rem;
         padding: 1.25rem 1.5rem;
     }
-    
+
     .cta-button {
         padding: 1.25rem 1.75rem;
         font-size: 1.125rem;
     }
-    
+
     .tech-card {
         padding: 1.5rem;
         margin: 0 0.75rem 1rem;
     }
-    
-    .problem-section, .solution-section {
+
+    .problem-section,
+    .solution-section {
         padding: 1.5rem;
         margin: 0 0.75rem 1.25rem;
     }
-    
-    
+
+
     /* Body text sizes for mobile */
     .body-text {
         font-size: 1.125rem;
     }
-    
+
     .body-text-lg {
         font-size: 1.25rem;
     }
-    
+
     .body-text-xl {
         font-size: 1.375rem;
     }
-    
+
     .waitlist-card h3 {
         font-size: 1.75rem;
     }
-    
+
     /* Thank you message mobile styles */
     .thank-you-message {
-        padding: 2.5rem 1.75rem;
-        min-height: 160px;
+        padding: 3rem 2rem;
+        min-height: 180px;
         margin: 0 0.75rem;
+        border-radius: 2rem;
     }
-    
-    .thank-you-message .checkmark {
-        width: 65px;
-        height: 65px;
-        margin-bottom: 1.25rem;
+
+    .thank-you-message .success-icon {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 1.5rem;
     }
-    
-    .thank-you-message .checkmark::before {
-        font-size: 2rem;
+
+    .thank-you-message .success-icon::before {
+        font-size: 2.25rem;
     }
-    
-    .thank-you-message h3 {
+
+    .thank-you-message .title {
         font-size: 2rem;
         margin-bottom: 1rem;
     }
-    
-    .thank-you-message p {
-        font-size: 1.25rem;
+
+    .thank-you-message .subtitle {
+        font-size: 1.125rem;
         max-width: 280px;
     }
 }
@@ -789,81 +861,86 @@ body {
     .hero-title {
         font-size: 3.5rem;
     }
-    
+
     .hero-title .gradient-text {
         font-size: 0.9em;
     }
-    
+
     .logo-image {
         height: 5rem;
     }
-    
+
     .section-header {
         font-size: 3rem;
     }
-    
+
     .subsection-header {
         font-size: 1.875rem;
     }
-    
+
     .subsection-header-center {
         font-size: 1.625rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1.5rem;
     }
-    
+
     .waitlist-card {
         padding: 0 1.5rem 2rem;
         margin: 0 0.5rem;
     }
-    
+
     .input-field {
         min-width: 240px;
         font-size: 1.25rem;
         padding: 1.375rem 1.625rem;
     }
-    
+
     .cta-button {
         padding: 1.375rem 2rem;
         font-size: 1.25rem;
     }
-    
+
     .body-text {
         font-size: 1.25rem;
     }
-    
+
     .body-text-lg {
         font-size: 1.375rem;
     }
-    
+
     .body-text-xl {
         font-size: 1.5rem;
     }
-    
+
     .waitlist-card h3 {
         font-size: 1.875rem;
     }
-    
+
     /* Thank you message small mobile styles */
     .thank-you-message {
-        padding: 2.75rem 2rem;
-        min-height: 170px;
+        padding: 3.5rem 2.5rem;
+        min-height: 190px;
         margin: 0 0.5rem;
+        border-radius: 2.25rem;
     }
-    
-    .thank-you-message .checkmark {
-        width: 70px;
-        height: 70px;
+
+    .thank-you-message .success-icon {
+        width: 75px;
+        height: 75px;
     }
-    
-    .thank-you-message h3 {
+
+    .thank-you-message .success-icon::before {
+        font-size: 2.5rem;
+    }
+
+    .thank-you-message .title {
         font-size: 2.25rem;
     }
-    
-    .thank-you-message p {
-        font-size: 1.375rem;
+
+    .thank-you-message .subtitle {
+        font-size: 1.25rem;
         max-width: 320px;
     }
 }
@@ -875,68 +952,68 @@ body {
         align-items: center;
         gap: 1rem;
     }
-    
+
     .input-field {
         flex: 1;
         min-width: 260px;
         font-size: 1.125rem;
         padding: 1.25rem 1.5rem;
     }
-    
+
     .cta-button {
         width: auto;
         flex-shrink: 0;
         font-size: 1.125rem;
         padding: 1.25rem 1.75rem;
     }
-    
+
     .pageclip-form.form-container {
         flex-direction: row;
         align-items: center;
         gap: 1rem;
     }
-    
+
     .pageclip-form .input-field {
         flex: 1;
     }
-    
+
     .pageclip-form__submit.cta-button {
         width: auto;
         flex-shrink: 0;
     }
-    
+
     .hero-title {
         font-size: 4rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1.375rem;
     }
-    
+
     .section-header {
         font-size: 3.25rem;
     }
-    
+
     .subsection-header {
         font-size: 1.75rem;
     }
-    
+
     .subsection-header-center {
         font-size: 1.5rem;
     }
-    
+
     .waitlist-card h3 {
         font-size: 1.75rem;
     }
-    
+
     .body-text {
         font-size: 1.125rem;
     }
-    
+
     .body-text-lg {
         font-size: 1.25rem;
     }
-    
+
     .body-text-xl {
         font-size: 1.375rem;
     }
@@ -949,75 +1026,75 @@ body {
         align-items: center;
         gap: 1rem;
     }
-    
+
     .input-field {
         flex: 1;
         font-size: 1rem;
         padding: 1.125rem 1.5rem;
     }
-    
+
     .cta-button {
         width: auto;
         flex-shrink: 0;
         font-size: 1rem;
         padding: 1.125rem 2rem;
     }
-    
+
     .pageclip-form.form-container {
         flex-direction: row;
         align-items: center;
         gap: 1rem;
     }
-    
+
     .pageclip-form .input-field {
         flex: 1;
     }
-    
+
     .pageclip-form__submit.cta-button {
         width: auto;
         flex-shrink: 0;
     }
-    
+
     .hero-title {
         font-size: 5rem;
     }
-    
+
     .logo-image {
         height: 5rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1.375rem;
     }
-    
+
     .section-header {
         font-size: 3.5rem;
     }
-    
+
     .subsection-header {
         font-size: 1.75rem;
     }
-    
+
     .subsection-header-center {
         font-size: 1.375rem;
     }
-    
+
     .waitlist-card h3 {
         font-size: 1.625rem;
     }
-    
+
     .body-text {
         font-size: 1.0625rem;
     }
-    
+
     .body-text-lg {
         font-size: 1.1875rem;
     }
-    
+
     .body-text-xl {
         font-size: 1.3125rem;
     }
-    
+
     .tech-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.125rem;
@@ -1031,73 +1108,73 @@ body {
         align-items: center;
         gap: 1rem;
     }
-    
+
     .input-field {
         flex: 1;
     }
-    
+
     .cta-button {
         width: auto;
         flex-shrink: 0;
     }
-    
+
     .pageclip-form.form-container {
         flex-direction: row;
         align-items: center;
         gap: 1rem;
     }
-    
+
     .pageclip-form .input-field {
         flex: 1;
     }
-    
+
     .pageclip-form__submit.cta-button {
         width: auto;
         flex-shrink: 0;
     }
-    
+
     .hero-title {
         font-size: 6rem;
     }
-    
+
     .logo-image {
         height: 6rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1.5rem;
     }
-    
+
     /* Break "Stop explaining. Start creating." to new line on desktop */
     .hero-subtitle .desktop-break {
         display: block;
     }
-    
+
     /* Increase paragraph text size for desktop */
     .body-text {
         font-size: 1.25rem;
     }
-    
+
     .body-text-lg {
         font-size: 1.375rem;
     }
-    
+
     .body-text-xl {
         font-size: 1.5rem;
     }
-    
+
     .section-header {
         font-size: 3.75rem;
     }
-    
+
     .subsection-header {
         font-size: 1.875rem;
     }
-    
+
     .subsection-header-center {
         font-size: 1.5rem;
     }
-    
+
     .tech-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 1.25rem;
@@ -1110,60 +1187,60 @@ body {
         grid-template-columns: 1fr;
         gap: 0.875rem;
     }
-    
+
     .tech-grid {
         grid-template-columns: 1fr;
         gap: 0.875rem;
     }
-    
+
     .hero-section {
         padding: 1.5rem 0;
         min-height: 100vh;
     }
-    
+
     /* Ensure "Be Understood" stays on one line on mobile */
     .hero-title .gradient-text {
         white-space: nowrap;
         font-size: 0.85em;
     }
-    
+
     .section-spacing {
         padding: 1.5rem 0;
     }
-    
+
     .cta-section {
         padding: 1.5rem 0 2.5rem 0;
     }
-    
+
     /* Reduce margins between sections for smoother flow */
     .mb-4 {
         margin-bottom: 0.625rem;
     }
-    
+
     .mb-6 {
         margin-bottom: 0.875rem;
     }
-    
+
     .mb-8 {
         margin-bottom: 1.25rem;
     }
-    
+
     .mb-12 {
         margin-bottom: 1.5rem;
     }
-    
+
     .mb-16 {
         margin-bottom: 0.875rem;
     }
-    
+
     .medium-bottom-spacing {
         margin-bottom: 1rem;
     }
-    
+
     .large-bottom-spacing {
         margin-bottom: 1.5rem;
     }
-    
+
     .bottom-spacing {
         margin-bottom: 1.25rem;
     }
@@ -1171,20 +1248,27 @@ body {
 
 /* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
-    .cta-button, .pageclip-form__submit.cta-button {
-        min-height: 48px; /* Minimum touch target size */
-        touch-action: manipulation; /* Disable double-tap zoom */
+
+    .cta-button,
+    .pageclip-form__submit.cta-button {
+        min-height: 48px;
+        /* Minimum touch target size */
+        touch-action: manipulation;
+        /* Disable double-tap zoom */
     }
-    
+
     .input-field {
         min-height: 48px;
         touch-action: manipulation;
     }
-    
-    .tech-card, .problem-section, .solution-section, .waitlist-card {
+
+    .tech-card,
+    .problem-section,
+    .solution-section,
+    .waitlist-card {
         touch-action: manipulation;
     }
-    
+
     /* Remove hover effects on touch devices */
     .tech-card:hover,
     .waitlist-card:hover,
@@ -1196,7 +1280,8 @@ body {
 }
 
 /* High DPI displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
     .logo-image {
         image-rendering: -webkit-optimize-contrast;
         image-rendering: crisp-edges;
@@ -1210,25 +1295,25 @@ body {
         min-height: 100vh;
         padding: 1rem 0;
     }
-    
+
     .hero-title {
         font-size: 2.5rem;
         line-height: 1.1;
     }
-    
+
     .logo-image {
         height: 2.5rem;
     }
-    
+
     .hero-logo {
         margin-bottom: 1rem;
     }
-    
+
     .hero-subtitle {
         margin: 0.5rem 0 0 0;
         font-size: 1.125rem;
     }
-    
+
     .hero-waitlist-spacing {
         margin-top: 0.5rem;
     }
@@ -1239,17 +1324,18 @@ body {
     .particle-canvas {
         display: none;
     }
-    
-    .cta-button, .pageclip-form__submit {
+
+    .cta-button,
+    .pageclip-form__submit {
         display: none;
     }
-    
+
     .waitlist-card {
         border: 1px solid #000;
         background: white;
         color: black;
     }
-    
+
     body {
         background: white;
         color: black;

@@ -18,10 +18,10 @@ window.addEventListener('resize', () => {
 
 class Particle {
     constructor(x, y, dX, dY, size) {
-        this.x = x; 
-        this.y = y; 
-        this.directionX = dX; 
-        this.directionY = dY; 
+        this.x = x;
+        this.y = y;
+        this.directionX = dX;
+        this.directionY = dY;
         this.size = size;
         this.opacity = Math.random() * 0.3 + 0.1;
     }
@@ -34,18 +34,18 @@ class Particle {
     update() {
         if (this.x > canvas.width || this.x < 0) { this.directionX = -this.directionX; }
         if (this.y > canvas.height || this.y < 0) { this.directionY = -this.directionY; }
-        
+
         let dx = mouse.x - this.x;
         let dy = mouse.y - this.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
-        
+
         if (distance < mouse.radius + this.size) {
             if (mouse.x < this.x && this.x < canvas.width - this.size * 10) { this.x += 2; }
             if (mouse.x > this.x && this.x > this.size * 10) { this.x -= 2; }
             if (mouse.y < this.y && this.y < canvas.height - this.size * 10) { this.y += 2; }
             if (mouse.y > this.y && this.y > this.size * 10) { this.y -= 2; }
         }
-        
+
         this.x += this.directionX;
         this.y += this.directionY;
         this.draw();
@@ -98,39 +98,40 @@ init();
 animate();
 
 // Pageclip form handling
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Function to show thank you message
     function showThankYouMessage(form) {
         const waitlistCard = form.closest('.waitlist-card');
-        
+
         // Create thank you message with animation
         const thankYouHTML = `
             <div class="thank-you-message">
-                <div class="checkmark"></div>
-                <h3>Welcome aboard!</h3>
-                <p>You're now on the Synapse waitlist. We'll notify you when we're ready to launch!</p>
+                <div class="success-icon"></div>
+                <h3 class="title">Welcome aboard!</h3>
+                <p class="subtitle">You're now on the Synapse waitlist. We'll notify you when we're ready to launch!</p>
+                <div class="accent-line"></div>
             </div>
         `;
-        
+
         // Hide form with smooth animation
         form.style.opacity = '0';
         form.style.transform = 'translateY(-10px) scale(0.98)';
         form.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-        
+
         setTimeout(() => {
             form.style.display = 'none';
-            
+
             // Insert thank you message
             form.insertAdjacentHTML('afterend', thankYouHTML);
-            
+
             // Trigger animation for thank you message
             const thankYouMessage = waitlistCard.querySelector('.thank-you-message');
             setTimeout(() => {
                 thankYouMessage.classList.add('show');
             }, 50);
-            
+
         }, 400);
-        
+
         // Reset form after 6 seconds
         setTimeout(() => {
             const thankYouMessage = waitlistCard.querySelector('.thank-you-message');
@@ -139,14 +140,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 thankYouMessage.style.opacity = '0';
                 thankYouMessage.style.transform = 'translateY(10px) scale(0.95)';
                 thankYouMessage.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-                
+
                 setTimeout(() => {
                     thankYouMessage.remove();
-                    
+
                     // Show form again
                     form.style.display = 'flex';
                     form.reset();
-                    
+
                     // Animate form back in
                     setTimeout(() => {
                         form.style.opacity = '1';
@@ -156,19 +157,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, 6000);
     }
-    
+
     // Handle Pageclip success events
-    window.addEventListener('pageclip-success', function(event) {
+    window.addEventListener('pageclip-success', function (event) {
         const form = event.target;
         if (form.classList.contains('pageclip-form')) {
             showThankYouMessage(form);
         }
     });
-    
+
     // Fallback for manual form submission
     const forms = document.querySelectorAll('.pageclip-form');
     forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', function (e) {
             // Let Pageclip handle the submission
             // The success event will be triggered automatically
         });
